@@ -16,8 +16,7 @@
         <copyright>Copyright ICT Baden GmbH 2021-2023</copyright>
         <tags>.NET Core sip PJSIP PJSUA2 VoIP</tags>
         <dependencies>
-            <group targetFramework="netcoreapp3.1" />
-            <group targetFramework="net6.0" />
+            <group targetFramework="net8.0" />
         </dependencies>
         <references>
             <reference file="pjsua2.net.dll" />

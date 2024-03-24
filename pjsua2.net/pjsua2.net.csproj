@@ -4,7 +4,7 @@
         <RootNamespace>pjsip</RootNamespace>
         <IsPackable>false</IsPackable>
         <LangVersion>10</LangVersion>
-        <TargetFrameworks>netcoreapp3.1;net6.0-windows</TargetFrameworks>
+        <TargetFrameworks>net8.0-windows</TargetFrameworks>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 

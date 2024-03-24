@@ -1,4 +1,5 @@
 
+* 1.2.4   - 14.03.2024 Update to .net8.0
 * 1.2.3   - 17.10.2023 Fixed package versions
 * 1.2.2   - 17.10.2023 VS2022, Windows SDK 10.0, net6.0, C#11, Nullable enabled
 * 1.2.1   - 14.10.2023 Removed lock() (DEPRECATED)

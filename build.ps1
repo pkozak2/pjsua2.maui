@@ -69,7 +69,7 @@ $pjsipPath = [System.IO.Path]::Combine($path, $pjproject)
 try {
 
     If(Test-Path -Path $pjsipPath) {
-        Remove-Item $pjsipPath -Force -Recurse
+#        Remove-Item $pjsipPath -Force -Recurse
     }
 
 } catch {
@@ -83,7 +83,7 @@ Write-Host ""
 ######################################################################
 Write-Host "Get current version of PJSIP sources" -ForegroundColor Yellow
 
-git clone $pjsipRepo $pjproject 2>$null
+#git clone $pjsipRepo $pjproject 2>$null
 
 Write-Host ""
 
@@ -280,78 +280,58 @@ If(Test-Path -Path $packetsPath) {
     }
 }
 
-$platformPath = [System.IO.Path]::Combine($packetsPath, "netcoreapp3.1")
-New-Item -ItemType Directory -Path $platformPath
-$platformPath = [System.IO.Path]::Combine($packetsPath, "net6.0")
+$platformPath = [System.IO.Path]::Combine($packetsPath, "net8.0")
 New-Item -ItemType Directory -Path $platformPath
 
-
-$platformPath = [System.IO.Path]::Combine($packetsPath, "win-x64")
-New-Item -ItemType Directory -Path $platformPath
-$platformPath = [System.IO.Path]::Combine($packetsPath, "linux-x64")
-New-Item -ItemType Directory -Path $platformPath
-$platformPath = [System.IO.Path]::Combine($packetsPath, "linux-arm")
-New-Item -ItemType Directory -Path $platformPath
-
-$assetsPath = [System.IO.Path]::Combine($pjsua2netPath, "bin\Release\netcoreapp3.1")
-$src = [System.IO.Path]::Combine($assetsPath, "pjsua2.dll")
-$dst = [System.IO.Path]::Combine($packetsPath, "win-x64")
-Copy-Item $src $dst
-
-$assetsPath = [System.IO.Path]::Combine($pjsua2netPath, "bin\Release\netcoreapp3.1")
+$assetsPath = [System.IO.Path]::Combine($pjsua2netPath, "bin\Release\net8.0-windows")
 $src = [System.IO.Path]::Combine($assetsPath, "pjsua2.net.dll")
-$dst = [System.IO.Path]::Combine($packetsPath, "netcoreapp3.1")
-Copy-Item $src $dst
-
-$assetsPath = [System.IO.Path]::Combine($pjsua2netPath, "bin\Release\net6.0-windows")
-$src = [System.IO.Path]::Combine($assetsPath, "pjsua2.net.dll")
-$dst = [System.IO.Path]::Combine($packetsPath, "net6.0")
+$dst = [System.IO.Path]::Combine($packetsPath, "net8.0")
 Copy-Item $src $dst
 
 Write-Host ""
 
 
 ######################################################################
-Write-Host "Copy generated C++ wrappers to pjsua2.linux" -ForegroundColor Yellow
+#Write-Host "Copy generated C++ wrappers to pjsua2.linux" -ForegroundColor Yellow
 
-$pjsua2winPath = [System.IO.Path]::Combine($path, "pjsua2.linux")
+#$pjsua2winPath = [System.IO.Path]::Combine($path, "pjsua2.linux")
 
-$src = [System.IO.Path]::Combine($pjsipPath, "pjsip-apps\src\swig\pjsua2_wrap.*")
-Copy-Item $src $pjsua2winPath
+#$src = [System.IO.Path]::Combine($pjsipPath, "pjsip-apps\src\swig\pjsua2_wrap.*")
+#Copy-Item $src $pjsua2winPath
 
-$src = [System.IO.Path]::Combine($pjsipPath, "pjsip-apps\src\swig\pjsua2.i")
-Copy-Item $src $pjsua2winPath
+#$src = [System.IO.Path]::Combine($pjsipPath, "pjsip-apps\src\swig\pjsua2.i")
+#Copy-Item $src $pjsua2winPath
 
-Write-Host ""
-
-
-######################################################################
-Write-Host "Build Linux (x64)" -ForegroundColor Yellow
-
-wsl -e ./build-linux.sh
-
-If(-not (Test-Path .\pjsua2.linux\*.so)) {
-    Write-Host "FAIL: Failed to build linux-x64" -ForegroundColor Magenta
-    return
-}
-
-Write-Host ""
+#Write-Host ""
 
 
 ######################################################################
-If($arm) {
+#Write-Host "Build Linux (x64)" -ForegroundColor Yellow
+
+#wsl -e ./build-linux.sh
+
+#If(-not (Test-Path .\pjsua2.linux\*.so)) {
+#    Write-Host "FAIL: Failed to build linux-x64" -ForegroundColor Magenta
+#    return
+#}
+
+#Write-Host ""
+
+
+######################################################################
+#If($arm) {
 	
-	Write-Host "Build Linux (ARM)" -ForegroundColor Yellow
+#	Write-Host "Build Linux (ARM)" -ForegroundColor Yellow
 
-	wsl -e ./build-linux-arm.sh
+#	wsl -e ./build-linux-arm.sh
 
-	If(-not (Test-Path .\pjsua2.linux\*.so)) {
-		Write-Host "FAIL: Failed to build linux-arm" -ForegroundColor Magenta
-		return
-	}
+#	If(-not (Test-Path .\pjsua2.linux\*.so)) {
+#		Write-Host "FAIL: Failed to build linux-arm" -ForegroundColor Magenta
+#		return
+#	}
 
-	Write-Host ""
-}
+#	Write-Host ""
+#}
 
 ######################################################################
 Write-Host ""

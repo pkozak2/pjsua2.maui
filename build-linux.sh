@@ -3,7 +3,7 @@
 #   git, gcc, g++, cmake
 
 echo "Directory mounted from Windows"
-cd /mnt/c/Repos/IctBaden.pjsua2
+cd /mnt/C/pjsip/pjsua2.maui
 echo
 
 echo "Cleanup existing PJSIP sources"
